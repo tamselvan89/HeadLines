@@ -1,0 +1,110 @@
+[
+  {
+    "code": "ar",
+    "name": "Argentina"
+  },
+  {
+    "code": "at",
+    "name": "Austria"
+  },
+  {
+    "code": "au",
+    "name": "Australia"
+  },
+  {
+    "code": "be",
+    "name": "Belgium"
+  },
+  {
+    "code": "bg",
+    "name": "Bulgaria"
+  },
+  {
+    "code": "br",
+    "name": "Brazil"
+  },
+  {
+    "code": "ca",
+    "name": "Canada"
+  },
+  {
+    "code": "cn",
+    "name": "China"
+  },
+  {
+    "code": "co",
+    "name": "Colombia"
+  },
+  {
+    "code": "cu",
+    "name": "Cuba"
+  },
+  {
+    "code": "cz",
+    "name": "Czech Republic"
+  },
+  {
+    "code": "de",
+    "name": "Denmark"
+  },
+  {
+    "code": "eg",
+    "name": "Egypt"
+  },
+  {
+    "code": "fr",
+    "name": "France"
+  },
+  {
+    "code": "gb",
+    "name": "United Kingdom"
+  },
+  {
+    "code": "in",
+    "name": "India"
+  },
+  {
+    "code": "it",
+    "name": "Italy"
+  },
+  {
+    "code": "jp",
+    "name": "Japan"
+  },
+  {
+    "code": "kr",
+    "name": "Korea"
+  },
+  {
+    "code": "ru",
+    "name": "Russia"
+  },
+  {
+    "code": "sk",
+    "name": "Slovakia"
+  },
+  {
+    "code": "ch",
+    "name": "Switzerland"
+  },
+  {
+    "code": "th",
+    "name": "Thailand"
+  },
+  {
+    "code": "tr",
+    "name": "Turkey"
+  },
+  {
+    "code": "ua",
+    "name": "Ukraine"
+  },
+  {
+    "code": "us",
+    "name": "United States"
+  },
+  {
+    "code": "ve",
+    "name": "Venezuela"
+  }
+]

@@ -12,14 +12,11 @@ object AppConstants {
 
     const val APP_VERSION = "V" + BuildConfig.VERSION_NAME
 
-    const val APP_NAME = "MVVMTemplate"
-    const val DB_NAME = "mvvmTemplate.db"
-    const val PREF_NAME = "mvvmTemplate_pref"
+    const val APP_NAME = "NewsApp"
+    const val DB_NAME = "newsapp.db"
+    const val PREF_NAME = "newsapp_pref"
 
     const val TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss"
 
     const val NULL_INDEX = -1L
-
-    // Intent request codes
-    const val REQUEST_CODE_UPDATE = 100
 }
