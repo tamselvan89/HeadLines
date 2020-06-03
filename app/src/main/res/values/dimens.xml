@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="statusbar_size">24dp</dimen>
+
+    <dimen name="design_bottom_navigation_height" tools:override="true">56dp</dimen>
+
+    <dimen name="icon_size">36dp</dimen>
+
+    <!--Default Text sizes-->
+    <dimen name="txt_vsmall">10sp</dimen>
+    <dimen name="txt_small">12sp</dimen>
+    <dimen name="txt_medium">14sp</dimen>
+    <dimen name="txt_large">16sp</dimen>
+    <dimen name="txt_xlarge">18sp</dimen>
+    <dimen name="txt_xxlarge">20sp</dimen>
+
+    <!--Default Button size-->
+    <dimen name="btn_txt_size">16sp</dimen>
+
+    <!--Default EditText size-->
+    <dimen name="edt_txt_size">14sp</dimen>
+    <dimen name="edt_box_height">46dp</dimen>
+
+    <integer name="span_count">2</integer>
+</resources>
