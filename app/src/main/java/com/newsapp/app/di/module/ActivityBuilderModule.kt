@@ -1,6 +1,7 @@
 package com.newsapp.app.di.module
 
 import com.newsapp.app.di.scope.ActivityScope
+import com.newsapp.app.view.home.HomeFragment
 import com.newsapp.app.view.mainactivity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -16,4 +17,8 @@ abstract class ActivityBuilderModule {
     @ActivityScope
     @ContributesAndroidInjector
     abstract fun contributeMainActivity(): MainActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun contributeHomeFrgment(): HomeFragment
 }

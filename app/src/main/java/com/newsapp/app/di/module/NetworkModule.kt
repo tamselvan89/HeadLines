@@ -1,7 +1,9 @@
 package com.newsapp.app.di.module
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.newsapp.app.BaseApplication.Companion.networkListener
 import com.newsapp.app.BuildConfig
+import com.newsapp.app.utils.CommonUtil
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -50,20 +52,6 @@ class NetworkModule {
                 }
             }
         })*/
-
-        /*Header*/
-        /*httpClient.addInterceptor(object : Interceptor {
-            @Throws(IOException::class)
-            override fun intercept(chain: Interceptor.Chain): Response {
-                Logger.d("AuthToken", AppManager.getAuthToken())
-                val original = chain.request()
-                val request = original.newBuilder()
-                    .header("authorization", "Bearer " + AppManager.getAuthToken())
-                    .build()
-                return chain.proceed(request)
-            }
-        })*/
-
         return httpClient.build()
     }
 

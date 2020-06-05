@@ -64,6 +64,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel)
         mViewDataBinding.lifecycleOwner = this
         mViewDataBinding.executePendingBindings()
+        setUp()
     }
 
     open fun getBaseActivity(): BaseActivity<*, *> {

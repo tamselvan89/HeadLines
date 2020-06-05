@@ -2,8 +2,7 @@ package com.newsapp.app.utils
 
 
 import android.util.Log
-
-import com.squareup.picasso.BuildConfig
+import com.newsapp.app.BuildConfig
 
 object Logger {
 

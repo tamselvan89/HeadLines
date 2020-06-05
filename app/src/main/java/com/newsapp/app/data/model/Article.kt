@@ -1,40 +1,31 @@
 package com.newsapp.app.data.model
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Article {
+data class Article(
 
     @SerializedName("source")
-    @Expose
-    var source: Source? = null
+    val source: Source,
 
     @SerializedName("author")
-    @Expose
-    var author: String? = null
+    val author: String,
 
     @SerializedName("title")
-    @Expose
-    var title: String? = null
+    val title: String,
 
     @SerializedName("description")
-    @Expose
-    var description: String? = null
+    val description: String,
 
     @SerializedName("url")
-    @Expose
-    var url: String? = null
+    val url: String,
 
     @SerializedName("urlToImage")
-    @Expose
-    var urlToImage: String? = null
+    val urlToImage: String,
 
     @SerializedName("publishedAt")
-    @Expose
-    var publishedAt: String? = null
+    val publishedAt: String,
 
     @SerializedName("content")
-    @Expose
-    var content: String? = null
+    val content: String
 
-}
+)

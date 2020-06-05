@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#17394B</color>
+    <color name="colorPrimaryDark">#1B2138</color>
+    <color name="colorAccent">#23D99E</color>
 
     <color name="colorErr">#f8ff6200</color>
 
     <color name="txtHint">#bcbcbc</color>
     <color name="txtSub">#767676</color>
     <color name="txtColor">#454545</color>
+
+    <color name="BgCategory">#E8E8E8</color>
+    <color name="BgCategoryNormal">#777777</color>
+    <color name="BgCategorySelected">#23D99E</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
 </resources>

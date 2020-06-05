@@ -19,12 +19,6 @@ import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
-/**
- * Created by Anurag Garg on 19/03/19.
- *
- * Module to provide the generic dependencies
- */
-//@Module(includes = [ViewModelModule::class, NetworkModule::class])
 @Module(includes = [NetworkModule::class])
 class ApplicationModule {
 

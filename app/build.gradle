@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -8,7 +9,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.newsapp.in"
+        applicationId "com.newsapp.app"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -70,6 +71,7 @@ repositories {
 
 dependencies {
     /*Testing*/
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -80,6 +82,10 @@ dependencies {
     /*AppCompact*/
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
+
+    /*Navigation*/
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-beta01"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-beta01"
 
     /*Lifecycle*/
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
@@ -129,9 +135,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     kapt 'com.jakewharton:butterknife-compiler:10.1.0'
 
-    /*Picasso*/
-    implementation 'com.squareup.picasso:picasso:2.71828'
-
     /*Glide*/
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
@@ -156,7 +159,4 @@ dependencies {
 
     /*SDP - a scalable size unit*/
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
-
-    /*Palette*/
-    implementation 'androidx.palette:palette:1.0.0'
 }

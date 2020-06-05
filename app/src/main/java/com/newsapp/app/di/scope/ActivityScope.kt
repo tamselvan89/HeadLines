@@ -2,7 +2,6 @@ package com.newsapp.app.di.scope
 
 import javax.inject.Scope
 
-
 /**
  * Custom scope specifically for activities
  */

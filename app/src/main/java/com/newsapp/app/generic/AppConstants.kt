@@ -19,4 +19,6 @@ object AppConstants {
     const val TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss"
 
     const val NULL_INDEX = -1L
+
+    const val SPLASH_TIME_OUT = 3000L
 }
