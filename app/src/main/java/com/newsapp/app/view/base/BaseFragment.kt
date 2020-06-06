@@ -95,6 +95,10 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
         mActivity.showMessage(message)
     }
 
+    open fun showSnackBarErrMessage(message:String){
+        mActivity.ShowSnackBarErrMsg(message)
+    }
+
     interface Callback {
         fun onFragmentAttached()
         fun onFragmentDetached(tag: String?)

@@ -147,7 +147,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : DaggerAppC
         snackbar.show()
     }
 
-    protected open fun ShowSnackBarMessage(message: Int) {
+    open fun ShowSnackBarMessage(message: Int) {
         val snackbar: Snackbar =
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackbar.view
@@ -159,7 +159,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : DaggerAppC
         snackbar.show()
     }
 
-    protected open fun ShowSnackBarMessage(message: String) {
+    open fun ShowSnackBarMessage(message: String) {
         val snackbar: Snackbar =
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackbar.view
@@ -171,7 +171,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : DaggerAppC
         snackbar.show()
     }
 
-    protected fun ShowSnackBarErrMsg(msg: String) {
+    fun ShowSnackBarErrMsg(msg: String) {
         val snackbar: Snackbar =
             Snackbar.make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_LONG)
         val snackBarView = snackbar.view

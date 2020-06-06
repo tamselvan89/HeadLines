@@ -9,7 +9,6 @@ import com.newsapp.app.data.enums.ActivityState
 import com.newsapp.app.di.component.AppComponent
 import com.newsapp.app.di.component.DaggerAppComponent
 import com.newsapp.app.utils.Logger
-import com.newsapp.app.utils.interceptor.NetworkListener
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -25,30 +24,11 @@ class BaseApplication : DaggerApplication(), Application.ActivityLifecycleCallba
     private val activityStates = HashMap<Activity, ActivityState>()
 
     companion object {
-        @JvmField
-        var networkListener: NetworkListener? = null
-
-        @JvmStatic
-        fun setNetworkListener(networkListener: NetworkListener) {
-            this.networkListener = networkListener
-        }
-
-        @JvmStatic
-        fun removeNetworkListener() {
-            this.networkListener = null
-        }
-
+        lateinit var baseContext: Context
     }
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-    init {
-        System.loadLibrary("native-lib")
-    }
-
-    //Todo Native function call
-    external fun Hello(): String
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -59,6 +39,7 @@ class BaseApplication : DaggerApplication(), Application.ActivityLifecycleCallba
         super.onCreate()
         Logger.d(TAG, "Application Created")
 
+        BaseApplication.baseContext = applicationContext
         registerActivityLifecycleCallbacks(this)
     }
 

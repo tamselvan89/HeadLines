@@ -12,8 +12,6 @@ object AppConstants {
 
     const val APP_VERSION = "V" + BuildConfig.VERSION_NAME
 
-    const val APP_NAME = "NewsApp"
-    const val DB_NAME = "newsapp.db"
     const val PREF_NAME = "newsapp_pref"
 
     const val TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss"

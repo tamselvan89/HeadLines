@@ -9,12 +9,16 @@ import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.google.gson.JsonSyntaxException
 import com.newsapp.app.R
+import com.newsapp.app.data.enums.HttpExceptionType
 import com.newsapp.app.generic.AppConstants
+import retrofit2.adapter.rxjava.HttpException
 import java.io.IOException
 import java.nio.charset.Charset
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.net.ssl.HttpsURLConnection
 
 object CommonUtil {
 
@@ -96,5 +100,37 @@ object CommonUtil {
             return null
         }
         return jsonString
+    }
+
+    const val API_STATUS_CODE_LOCAL_ERROR = 0
+
+    fun getExceptionDetail(error: Throwable): HttpExceptionType? {
+        val httpExceptionType: HttpExceptionType
+        if (error is HttpException) {
+            when (error.code()) {
+                HttpsURLConnection.HTTP_UNAUTHORIZED -> httpExceptionType =
+                    HttpExceptionType.UNAUTHORIZED
+                HttpsURLConnection.HTTP_FORBIDDEN -> httpExceptionType =
+                    HttpExceptionType.FORBIDDEN
+                HttpsURLConnection.HTTP_INTERNAL_ERROR -> httpExceptionType =
+                    HttpExceptionType.INTERNAL_SERVER_ERROR
+                HttpsURLConnection.HTTP_BAD_REQUEST -> httpExceptionType =
+                    HttpExceptionType.BAD_REQUEST
+                API_STATUS_CODE_LOCAL_ERROR -> httpExceptionType =
+                    HttpExceptionType.NO_INTERNET_CONNECTION
+                else -> {
+                    httpExceptionType = HttpExceptionType.DEFAULT
+                    httpExceptionType.setErrType(error.getLocalizedMessage())
+                }
+            }
+        } else if (error is JsonSyntaxException) {
+            httpExceptionType = HttpExceptionType.API_ERROR
+        }else if(error is IOException){
+            httpExceptionType = HttpExceptionType.NO_INTERNET_CONNECTION
+        } else  {
+            httpExceptionType = HttpExceptionType.DEFAULT
+            httpExceptionType.setErrType(error.message)
+        }
+        return httpExceptionType
     }
 }

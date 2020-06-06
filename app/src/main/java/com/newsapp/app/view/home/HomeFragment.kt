@@ -65,7 +65,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             when (homeViewState) {
                 is HomeViewState.Error -> {
                     CommonUtil.dismissProgressDialog()
-                    showMessage(homeViewState.message)
+                    showSnackBarErrMessage(homeViewState.message)
                 }
                 is HomeViewState.Success -> {
                     CommonUtil.dismissProgressDialog()

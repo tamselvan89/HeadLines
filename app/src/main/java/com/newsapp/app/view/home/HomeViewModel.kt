@@ -3,10 +3,12 @@ package com.newsapp.app.view.home
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.newsapp.app.data.enums.HttpExceptionType
 import com.newsapp.app.data.model.NewsResponse
 import com.newsapp.app.data.prefs.PreferencesHelper
 import com.newsapp.app.data.rest.ApiService
 import com.newsapp.app.generic.AppConstants.API_KEY
+import com.newsapp.app.utils.CommonUtil
 import com.newsapp.app.utils.rx.BaseSchedulerProvider
 import com.newsapp.app.view.base.BaseViewModel
 import io.reactivex.SingleObserver
@@ -81,13 +83,18 @@ class HomeViewModel @Inject constructor(
 
                 override fun onError(err: Throwable) {
                     _isLoading.postValue(false)
-                    _viewState.value = HomeViewState.Error(err.toString())
+                    if (CommonUtil.getExceptionDetail(err) == HttpExceptionType.NO_INTERNET_CONNECTION) {
+                        _viewState.value =
+                            HomeViewState.Error("Please check your internet connection")
+                    }
                 }
             })
     }
 }
 
 sealed class HomeViewState {
+    object NoInternet : HomeViewState()
+
     data class Error(val message: String) : HomeViewState()
 
     data class Success(val response: NewsResponse) : HomeViewState()

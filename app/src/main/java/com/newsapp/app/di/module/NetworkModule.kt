@@ -1,9 +1,10 @@
 package com.newsapp.app.di.module
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.newsapp.app.BaseApplication.Companion.networkListener
+import com.newsapp.app.BaseApplication
 import com.newsapp.app.BuildConfig
-import com.newsapp.app.utils.CommonUtil
+import com.newsapp.app.utils.NetworkUtils
+import com.newsapp.app.utils.interceptor.NetworkConnInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -42,16 +43,15 @@ class NetworkModule {
             httpClient.addInterceptor(httpLoggingInterceptor!!)
         }
 
-        /*httpClient.addInterceptor(object : NetworkConnectionInterceptor() {
-            val isNetworkAvailable: Boolean
-                get() = CommonUtil.isNetworkAvailable(AppManager.baseContext)
-
-            fun onNetworkUnavailable() {
-                if (networkListener != null) {
-                    networkListener.onNetworkUnavailable()
-                }
+        httpClient.addInterceptor(object : NetworkConnInterceptor() {
+            override fun IsNetworkAvailable(): Boolean {
+                return NetworkUtils.isNetworkConnected(BaseApplication.baseContext)
             }
-        })*/
+
+            override fun OnNetworkFail() {
+
+            }
+        })
         return httpClient.build()
     }
 
