@@ -9,8 +9,8 @@ import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import com.newsapp.app.generic.AppConstants
 import com.newsapp.app.R
+import com.newsapp.app.generic.AppConstants
 import java.io.IOException
 import java.nio.charset.Charset
 import java.text.SimpleDateFormat
@@ -84,5 +84,17 @@ object CommonUtil {
     fun ShowToast(ctx: Context?, msg: String?) {
         val popUpToast = Toast.makeText(ctx, msg, Toast.LENGTH_SHORT)
         popUpToast.show()
+    }
+
+    fun getJsonFromAsset(context: Context, fileName: String): String? {
+        val jsonString: String
+        try {
+            jsonString =
+                context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+        return jsonString
     }
 }

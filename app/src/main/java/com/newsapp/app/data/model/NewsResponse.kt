@@ -12,4 +12,4 @@ data class NewsResponse(
 
     @SerializedName("articles")
     val articles: List<Article>
-)
+): ItemModel

@@ -1,6 +1,7 @@
 package com.newsapp.app.view.home
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -9,14 +10,13 @@ import com.newsapp.app.R
 import com.newsapp.app.data.model.Category
 import com.newsapp.app.data.model.NewsResponse
 import com.newsapp.app.databinding.FragmentHomeBinding
-import com.newsapp.app.extension.observeLiveData
 import com.newsapp.app.utils.CommonUtil
+import com.newsapp.app.utils.CommonUtil.getJsonFromAsset
 import com.newsapp.app.utils.Logger
 import com.newsapp.app.utils.ViewModelProviderFactory
 import com.newsapp.app.view.base.BaseFragment
 import dagger.android.DispatchingAndroidInjector
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.io.IOException
 import javax.inject.Inject
 
 /**
@@ -25,10 +25,9 @@ import javax.inject.Inject
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var newsResponse: NewsResponse
     private lateinit var categoryAdapter: CategoryAdapter
     private val adapter = HeadLinesAdapter()
-    private val categoryList = ArrayList<Category>()
+    private val categoryList = mutableListOf<Category>()
 
     @Inject
     internal lateinit var androidInJector: DispatchingAndroidInjector<Any>
@@ -52,24 +51,50 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun setUp() {
         setRecyclerView()
         setObservers(homeViewModel)
-        context?.let { CommonUtil.showProgressDialog(it, "") }
-        /*By Default show General News*/
-        homeViewModel.loadData(categoryList.get(0).name)
+        btn_country.text = homeViewModel.getCountry()
+
+        homeViewModel.loadData()
+
+        getViewDataBinding().btnCountry.setOnClickListener {
+            CountryDialog().show(parentFragmentManager, "Country")
+        }
     }
 
     private fun setObservers(homeViewModel: HomeViewModel) {
-        observeLiveData(homeViewModel.getNewsResponse()) {
-            CommonUtil.dismissProgressDialog()
-            newsResponse = it
-            adapter.submitList(newsResponse.articles)
-            recyclerview_headlines.smoothScrollToPosition(0)
-        }
+        homeViewModel.viewState.observe(viewLifecycleOwner, Observer { homeViewState ->
+            when (homeViewState) {
+                is HomeViewState.Error -> {
+                    CommonUtil.dismissProgressDialog()
+                    showMessage(homeViewState.message)
+                }
+                is HomeViewState.Success -> {
+                    CommonUtil.dismissProgressDialog()
+                    val response: NewsResponse = homeViewState.response
+                    adapter.submitList(response.articles)
+                    recyclerview_headlines.smoothScrollToPosition(0)
+                }
+                is HomeViewState.ChangedCountry -> {
+                    btn_country.text = homeViewState.country
+                }
+            }
+        })
+
+        homeViewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+            when (isLoading) {
+                true -> {
+                    CommonUtil.showProgressDialog(requireContext(), "")
+                }
+                false -> {
+                    CommonUtil.dismissProgressDialog()
+                }
+            }
+        })
     }
 
     private fun setRecyclerView() {
         categoryAdapter = CategoryAdapter(requireContext(), ::OnCategoryClick)
         recyclerview_category.adapter = categoryAdapter
-        val categoryData = getJsonFromAsset("category.json")
+        val categoryData = getJsonFromAsset(requireContext(), "category.json")
         Logger.d("Category", categoryData.toString())
 
         val gson = Gson()
@@ -78,30 +103,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
         for (value in categoryValue) {
             val category = Category(value, false)
+            if (value.equals(homeViewModel.getCategory(), true)) {
+                category.isSelected = true
+            }
             categoryList.add(category)
         }
-
-        /* By Default select the General Category*/
-        categoryList.get(0).isSelected = true
         categoryAdapter.submitList(categoryList)
 
         recyclerview_headlines.adapter = adapter
     }
 
-    private fun getJsonFromAsset(fileName: String): String? {
-        val jsonString: String
-        try {
-            jsonString =
-                requireContext().assets.open(fileName).bufferedReader().use { it.readText() }
-        } catch (ioException: IOException) {
-            ioException.printStackTrace()
-            return null
-        }
-        return jsonString
-    }
-
     private fun OnCategoryClick(category: String) {
-        context?.let { CommonUtil.showProgressDialog(it, "") }
-        homeViewModel.loadData(category)
+        homeViewModel.setCategory(category)
     }
 }

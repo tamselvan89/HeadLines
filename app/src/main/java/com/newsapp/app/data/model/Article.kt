@@ -28,4 +28,4 @@ data class Article(
     @SerializedName("content")
     val content: String
 
-)
+) : ItemModel

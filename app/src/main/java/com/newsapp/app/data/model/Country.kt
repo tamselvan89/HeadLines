@@ -1,6 +1,6 @@
 package com.newsapp.app.data.model
 
-data class Category(
+data class Country(
     val name: String,
-    var isSelected: Boolean = false
+    val code: String
 ): ItemModel

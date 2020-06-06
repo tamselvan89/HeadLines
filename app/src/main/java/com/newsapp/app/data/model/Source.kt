@@ -10,4 +10,4 @@ data class Source(
     @SerializedName("name")
     var name: String
 
-)
+): ItemModel

@@ -1,14 +1,8 @@
 package com.newsapp.app.di.module
 
-import android.content.Context
-import androidx.room.Room
-import com.newsapp.app.data.db.AppDatabase
-import com.newsapp.app.data.db.DbHelper
-import com.newsapp.app.data.db.dao.AppDbHelper
 import com.newsapp.app.data.prefs.AppPreferencesHelper
 import com.newsapp.app.data.prefs.PreferencesHelper
 import com.newsapp.app.data.rest.ApiService
-import com.newsapp.app.di.scope.DatabaseInfo
 import com.newsapp.app.di.scope.PreferenceInfo
 import com.newsapp.app.generic.AppConstants
 import com.newsapp.app.utils.rx.BaseSchedulerProvider
@@ -37,7 +31,7 @@ class ApplicationModule {
 
     @Provides
     @PreferenceInfo
-    fun providePreferenceName(): String? {
+    fun providePreferenceName(): String {
         return AppConstants.PREF_NAME
     }
 
@@ -45,29 +39,5 @@ class ApplicationModule {
     @Singleton
     fun providePreferencesHelper(appPreferencesHelper: AppPreferencesHelper): PreferencesHelper {
         return appPreferencesHelper
-    }
-
-    @Provides
-    @Singleton
-    fun provideAppDatabase(@DatabaseInfo dbName: String?, context: Context?): AppDatabase? {
-        return Room.databaseBuilder(
-            context?.applicationContext!!,
-            AppDatabase::class.java,
-            dbName!!
-        )
-            .fallbackToDestructiveMigration()
-            .build()
-    }
-
-    @Provides
-    @DatabaseInfo
-    fun provideDatabaseName(): String? {
-        return AppConstants.DB_NAME
-    }
-
-    @Provides
-    @Singleton
-    fun provideDbHelper(appDbHelper: AppDbHelper?): DbHelper? {
-        return appDbHelper
     }
 }

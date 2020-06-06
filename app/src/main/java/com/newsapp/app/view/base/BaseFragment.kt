@@ -91,6 +91,10 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : DaggerFrag
         mActivity.hideLoading()
     }
 
+    open fun showMessage(message:String){
+        mActivity.showMessage(message)
+    }
+
     interface Callback {
         fun onFragmentAttached()
         fun onFragmentDetached(tag: String?)

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_progress_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/progresstext"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerHorizontal="true"
+            android:background="@color/BgCategoryNormal"
+            android:fontFamily="@font/productsans_medium"
+            android:gravity="center"
+            android:text="@string/txt_choose_country"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_sort"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/_10sdp"
+            android:scaleType="fitCenter"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_sort" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/progresstext"
+            tools:listitem="@layout/list_item_country" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
