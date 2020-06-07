@@ -1,4 +1,4 @@
-# Head Lines On Your Finger 
+# Head Lines On Your Finger ![Screenshot](logo.jpg)
 Hey! Very excited to build this app using Kotlin Language.
 
 
