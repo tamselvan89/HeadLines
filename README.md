@@ -8,7 +8,7 @@ Hey! Very excited to build this app using Kotlin Language.
    "Sports",   "Technology"*
 
 ## Android Features
-This is built using the following android features
+This app is built using the following android features
  
  - MVVM Architecture
  - Live Data
