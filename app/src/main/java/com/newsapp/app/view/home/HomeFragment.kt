@@ -1,5 +1,7 @@
 package com.newsapp.app.view.home
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var categoryAdapter: CategoryAdapter
-    private val adapter = HeadLinesAdapter()
+    private lateinit var adapter: HeadLinesAdapter
     private val categoryList = mutableListOf<Category>()
 
     @Inject
@@ -58,6 +60,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         getViewDataBinding().btnCountry.setOnClickListener {
             CountryDialog().show(parentFragmentManager, "Country")
         }
+    }
+
+    private fun OnItemClick(url: String) {
+        val uris = Uri.parse(url)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        startActivity(intents)
     }
 
     private fun setObservers(homeViewModel: HomeViewModel) {
@@ -92,6 +100,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setRecyclerView() {
+        adapter = HeadLinesAdapter(::OnItemClick)
         categoryAdapter = CategoryAdapter(requireContext(), ::OnCategoryClick)
         recyclerview_category.adapter = categoryAdapter
         val categoryData = getJsonFromAsset(requireContext(), "category.json")

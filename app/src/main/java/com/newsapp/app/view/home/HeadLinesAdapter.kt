@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.newsapp.app.data.model.Article
 import com.newsapp.app.databinding.ListItemHeadlinesBinding
 
-class HeadLinesAdapter :
+class HeadLinesAdapter(private val OnItemClick: (url: String) -> Unit) :
     ListAdapter<Article, HeadLinesAdapter.HeadLinesViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadLinesViewHolder {
@@ -27,9 +27,12 @@ class HeadLinesAdapter :
         fun bind(article: Article) {
             binding.article = article
             binding.executePendingBindings()
+
+            binding.rootLayout.setOnClickListener {
+                OnItemClick(article.url)
+            }
         }
     }
-
 }
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
