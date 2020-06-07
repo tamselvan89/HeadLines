@@ -3,7 +3,7 @@ Hey! Very excited to build this app using Kotlin Language.
 
 
 ## About
-**Head Lines** is an Android mobile app. Its shows the updated(Hot) headlines on your finger. It shows you the headline news in ** 24** countries around the world with seven different categories like,
+**Head Lines** is an Android mobile app. Its shows the updated(Hot) headlines on your finger. It shows you the headline news in <b>24</b> countries around the world with seven different categories like,
  - *"General",   "Business",   "Entertainment",   "Health",   "Science",
    "Sports",   "Technology"*
 
